@@ -1,6 +1,6 @@
 // Calls every tool through a real MCP client.
 // Usage: node scripts/smoke.mjs            (spawns the stdio server)
-//        node scripts/smoke.mjs <url>      (remote Streamable HTTP, e.g. https://goldenratio-mcp.fly.dev/mcp)
+//        node scripts/smoke.mjs <url>      (remote Streamable HTTP, e.g. https://mcp.goldenratio.app/mcp)
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';

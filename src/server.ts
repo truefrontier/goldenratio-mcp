@@ -5,8 +5,8 @@ import {
   scale, spacing, borderWidth, lineHeight,
 } from './golden.js';
 
-export const VERSION = '0.1.0';
-export const REMOTE_URL = 'https://goldenratio-mcp.fly.dev/mcp';
+export const VERSION = '0.1.1';
+export const REMOTE_URL = 'https://mcp.goldenratio.app/mcp';
 export const TERMS_URL = 'https://github.com/truefrontier/goldenratio-mcp#hosted-service';
 export const TOOLS = ['golden_calculator', 'golden_spacing', 'golden_grid', 'golden_css_variables', 'tailwind_plugin_setup', 'golden_ratio_steps'];
 

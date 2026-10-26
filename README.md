@@ -12,7 +12,7 @@ Every output was checked against the live site (see [Verification](#verification
 
 The server is read-only. It needs no account and no secrets, stores nothing, and never calls goldenratio.app.
 
-**Remote endpoint:** `https://goldenratio-mcp.fly.dev/mcp` (Streamable HTTP, stateless, no auth, 120 requests a minute per IP). Use of the hosted endpoint is covered by [Hosted service](#hosted-service).
+**Remote endpoint:** `https://mcp.goldenratio.app/mcp` (Streamable HTTP, stateless, no auth, 120 requests a minute per IP). The original address, `https://goldenratio-mcp.fly.dev/mcp`, still works and serves the same server. Use of the hosted endpoint is covered by [Hosted service](#hosted-service).
 
 ## Install
 
@@ -20,7 +20,7 @@ The server is read-only. It needs no account and no secrets, stores nothing, and
 
 ```sh
 # remote (nothing to install)
-claude mcp add --transport http goldenratio-app https://goldenratio-mcp.fly.dev/mcp
+claude mcp add --transport http goldenratio-app https://mcp.goldenratio.app/mcp
 
 # or local stdio
 git clone https://github.com/truefrontier/goldenratio-mcp && cd goldenratio-mcp && npm install && npm run build
@@ -34,18 +34,18 @@ Add this to `~/.cursor/mcp.json` (or a project's `.cursor/mcp.json`):
 ```json
 {
   "mcpServers": {
-    "goldenratio-app": { "url": "https://goldenratio-mcp.fly.dev/mcp" }
+    "goldenratio-app": { "url": "https://mcp.goldenratio.app/mcp" }
   }
 }
 ```
 
 For local stdio, use `{ "command": "node", "args": ["/absolute/path/to/goldenratio-mcp/dist/stdio.js"] }`.
 
-Grok Bot uses the same thing. Add a custom MCP connector with the URL `https://goldenratio-mcp.fly.dev/mcp` and no auth.
+Grok Bot uses the same thing. Add a custom MCP connector with the URL `https://mcp.goldenratio.app/mcp` and no auth.
 
 ### Any other MCP client
 
-Add a remote (Streamable HTTP) server with the URL above. If the client only runs stdio servers, bridge it with `npx -y mcp-remote https://goldenratio-mcp.fly.dev/mcp`, or run `node dist/stdio.js` from a local build.
+Add a remote (Streamable HTTP) server with the URL above. If the client only runs stdio servers, bridge it with `npx -y mcp-remote https://mcp.goldenratio.app/mcp`, or run `node dist/stdio.js` from a local build.
 
 ## Tools
 
@@ -75,7 +75,7 @@ All tools are annotated `readOnlyHint: true`.
 
 ## Hosted service
 
-The endpoint at `https://goldenratio-mcp.fly.dev/mcp` is provided free and as-is, with no guarantee of uptime or accuracy. It may change, be rate-limited, or shut down at any time without notice.
+The endpoint at `https://mcp.goldenratio.app/mcp` (also reachable at `https://goldenratio-mcp.fly.dev/mcp`) is provided free and as-is, with no guarantee of uptime or accuracy. It may change, be rate-limited, or shut down at any time without notice.
 
 **Acceptable use.** Don't abuse or overload the service, don't try to get around the rate limit, and don't use it for anything illegal. We may block traffic that does.
 
@@ -93,7 +93,7 @@ The goldenratio.app and True Frontier names and logos aren't covered by this lic
 npm install
 npm run build        # tsc, then copies src/site into dist/site unchanged
 npm test             # calls every tool through a real MCP client over stdio
-node scripts/smoke.mjs https://goldenratio-mcp.fly.dev/mcp   # same, against the remote
+node scripts/smoke.mjs https://mcp.goldenratio.app/mcp   # same, against the remote
 npm run start:http   # local Streamable HTTP on :8080/mcp
 npm run extract      # regenerate the JSON data from a ../goldenratio-app checkout
 ```

@@ -1,6 +1,6 @@
 {
   "name": "goldenratio-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "repository": "github:truefrontier/goldenratio-mcp",
   "description": "MCP server for goldenratio.app: golden-ratio calculator, spacing scale, grid widths and Tailwind plugin setup",
