@@ -1,0 +1,35 @@
+{
+  "name": "goldenratio-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "repository": "github:truefrontier/goldenratio-mcp",
+  "description": "MCP server for goldenratio.app: golden-ratio calculator, spacing scale, grid widths and Tailwind plugin setup",
+  "type": "module",
+  "bin": {
+    "goldenratio-mcp": "dist/stdio.js"
+  },
+  "main": "dist/stdio.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && node -e \"require('fs').cpSync('src/site','dist/site',{recursive:true,filter:(p)=>!p.endsWith('.d.ts')})\"",
+    "start": "node dist/stdio.js",
+    "start:http": "node dist/http.js",
+    "test": "node scripts/smoke.mjs",
+    "extract": "node scripts/extract-grid-examples.mjs ../goldenratio-app/src/views/Grid.vue > src/site/grid-examples.json && node scripts/extract-spacing-cheatsheet.mjs ../goldenratio-app/src/views/Spacing.vue > src/site/spacing-cheatsheet.json"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "node-html-parser": "^6.1.13",
+    "typescript": "^5.9.3"
+  }
+}

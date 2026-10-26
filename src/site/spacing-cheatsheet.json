@@ -1,0 +1,132 @@
+{
+ "scale": [
+  {
+   "name": "0",
+   "size": "0",
+   "pixels": "0px",
+   "preview_class": "w-0"
+  },
+  {
+   "name": "1",
+   "size": "0.135rem",
+   "pixels": "2.16px",
+   "preview_class": "w-1"
+  },
+  {
+   "name": "2",
+   "size": "0.219rem",
+   "pixels": "3.5px",
+   "preview_class": "w-2"
+  },
+  {
+   "name": "3",
+   "size": "0.354rem",
+   "pixels": "5.66px",
+   "preview_class": "w-3"
+  },
+  {
+   "name": "4",
+   "size": "0.573rem",
+   "pixels": "9.16px",
+   "preview_class": "w-4"
+  },
+  {
+   "name": "5",
+   "size": "0.927rem",
+   "pixels": "14.828px",
+   "preview_class": "w-5"
+  },
+  {
+   "name": "6",
+   "size": "1.5rem",
+   "pixels": "24px",
+   "preview_class": "w-6"
+  },
+  {
+   "name": "7",
+   "size": "2.427rem",
+   "pixels": "38.83px",
+   "preview_class": "w-7"
+  },
+  {
+   "name": "8",
+   "size": "3.927rem",
+   "pixels": "62.83px",
+   "preview_class": "w-8"
+  },
+  {
+   "name": "9",
+   "size": "6.354rem",
+   "pixels": "101.66px",
+   "preview_class": "w-9"
+  },
+  {
+   "name": "10",
+   "size": "10.281rem",
+   "pixels": "164.48px",
+   "preview_class": "w-10"
+  },
+  {
+   "name": "11",
+   "size": "16.635rem",
+   "pixels": "266.16px",
+   "preview_class": "w-11"
+  }
+ ],
+ "double_and_half": [
+  {
+   "name": "...",
+   "size": "",
+   "pixels": "",
+   "preview_class": null
+  },
+  {
+   "name": "5",
+   "size": "0.927rem",
+   "pixels": "14.828px",
+   "preview_class": "w-5"
+  },
+  {
+   "name": "double-4",
+   "size": "1.15rem",
+   "pixels": "18.33px",
+   "preview_class": "w-double-4"
+  },
+  {
+   "name": "half-7",
+   "size": "1.21rem",
+   "pixels": "19.41px",
+   "preview_class": "w-half-7"
+  },
+  {
+   "name": "6",
+   "size": "1.5rem",
+   "pixels": "24px",
+   "preview_class": "w-6"
+  },
+  {
+   "name": "double-n - 2",
+   "size": "...",
+   "pixels": "...",
+   "preview_class": "w-double-5"
+  },
+  {
+   "name": "half-n + 1",
+   "size": "...",
+   "pixels": "...",
+   "preview_class": "w-half-8"
+  },
+  {
+   "name": "n",
+   "size": "...",
+   "pixels": "...",
+   "preview_class": "w-7"
+  },
+  {
+   "name": "...",
+   "size": "",
+   "pixels": "",
+   "preview_class": null
+  }
+ ]
+}

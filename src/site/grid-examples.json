@@ -1,0 +1,1300 @@
+[
+ {
+  "section": "The Foundational Example",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "6",
+    "classes": [
+     "w-grp-6"
+    ],
+    "label": "6"
+   }
+  ]
+ },
+ {
+  "section": "The Foundational Example",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "5",
+    "classes": [
+     "w-grp-5"
+    ],
+    "label": "5"
+   },
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   }
+  ]
+ },
+ {
+  "section": "The Foundational Example",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   },
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   }
+  ]
+ },
+ {
+  "section": "The Foundational Example",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   }
+  ]
+ },
+ {
+  "section": "The Foundational Example",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   }
+  ]
+ },
+ {
+  "section": "The Foundational Example",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "1",
+    "classes": [
+     "w-grp-1"
+    ],
+    "label": "1"
+   }
+  ]
+ },
+ {
+  "section": "The Foundational Example",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "1",
+    "classes": [
+     "w-grp-1"
+    ],
+    "label": "1"
+   },
+   {
+    "width": "1",
+    "classes": [
+     "w-grp-1"
+    ],
+    "label": "1"
+   }
+  ]
+ },
+ {
+  "section": "The Foundational Example",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "1",
+    "classes": [
+     "w-grp-1"
+    ],
+    "label": "1"
+   },
+   {
+    "width": "1",
+    "classes": [
+     "w-grp-1"
+    ],
+    "label": "1"
+   },
+   {
+    "width": "1",
+    "classes": [
+     "w-grp-1"
+    ],
+    "label": "1"
+   }
+  ]
+ },
+ {
+  "section": "Doubles",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "6",
+    "classes": [
+     "w-grp-6"
+    ],
+    "label": "6"
+   }
+  ]
+ },
+ {
+  "section": "Doubles",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "5",
+    "classes": [
+     "w-grp-5"
+    ],
+    "label": "5"
+   },
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   }
+  ]
+ },
+ {
+  "section": "Doubles",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "double-4",
+    "classes": [
+     "w-grp-double-4"
+    ],
+    "label": "double-4"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   }
+  ]
+ },
+ {
+  "section": "Doubles",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   },
+   {
+    "width": "double-3",
+    "classes": [
+     "w-grp-double-3"
+    ],
+    "label": "double-3"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   }
+  ]
+ },
+ {
+  "section": "Doubles",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "double-3",
+    "classes": [
+     "w-grp-double-3"
+    ],
+    "label": "double-3"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "double-2",
+    "classes": [
+     "w-grp-double-2"
+    ],
+    "label": "double-2"
+   }
+  ]
+ },
+ {
+  "section": "Doubles",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "double-3",
+    "classes": [
+     "w-grp-double-3"
+    ],
+    "label": "double-3"
+   },
+   {
+    "width": "double-2",
+    "classes": [
+     "w-grp-double-2"
+    ],
+    "label": "double-2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "1",
+    "classes": [
+     "w-grp-1"
+    ],
+    "label": "1"
+   }
+  ]
+ },
+ {
+  "section": "Doubles",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "double-2",
+    "classes": [
+     "w-grp-double-2"
+    ],
+    "label": "double-2"
+   },
+   {
+    "width": "double-2",
+    "classes": [
+     "w-grp-double-2"
+    ],
+    "label": "double-2"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "double-1",
+    "classes": [
+     "w-grp-double-1"
+    ],
+    "label": "double-1"
+   },
+   {
+    "width": "1",
+    "classes": [
+     "w-grp-1"
+    ],
+    "label": "1"
+   }
+  ]
+ },
+ {
+  "section": "Halves",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "half-6",
+    "classes": [
+     "w-grp-half-6"
+    ],
+    "label": "half-6"
+   },
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   },
+   {
+    "width": "half-3",
+    "classes": [
+     "w-grp-half-3"
+    ],
+    "label": "half-3"
+   }
+  ]
+ },
+ {
+  "section": "Halves",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "half-5",
+    "classes": [
+     "w-grp-half-5"
+    ],
+    "label": "half-5"
+   },
+   {
+    "width": "half-4",
+    "classes": [
+     "w-grp-half-4"
+    ],
+    "label": "half-4"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "half-4",
+    "classes": [
+     "w-grp-half-4"
+    ],
+    "label": "half-4"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   }
+  ]
+ },
+ {
+  "section": "Halves",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "half-4",
+    "classes": [
+     "w-grp-half-4"
+    ],
+    "label": "half-4"
+   },
+   {
+    "width": "half-4",
+    "classes": [
+     "w-grp-half-4"
+    ],
+    "label": "half-4"
+   },
+   {
+    "width": "half-3",
+    "classes": [
+     "w-grp-half-3"
+    ],
+    "label": "half-3"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "half-3",
+    "classes": [
+     "w-grp-half-3"
+    ],
+    "label": "half-3"
+   }
+  ]
+ },
+ {
+  "section": "Halves",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "half-4",
+    "classes": [
+     "w-grp-half-4"
+    ],
+    "label": "half-4"
+   },
+   {
+    "width": "half-3",
+    "classes": [
+     "w-grp-half-3"
+    ],
+    "label": "half-3"
+   },
+   {
+    "width": "half-3",
+    "classes": [
+     "w-grp-half-3"
+    ],
+    "label": "half-3"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-1",
+    "classes": [
+     "w-grp-half-1"
+    ],
+    "label": "half-1"
+   }
+  ]
+ },
+ {
+  "section": "Halves",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "half-6",
+    "classes": [
+     "w-grp-half-6"
+    ],
+    "label": "and so on..."
+   },
+   {
+    "width": "half-6",
+    "classes": [
+     "w-grp-half-6"
+    ],
+    "label": "and so on..."
+   }
+  ]
+ },
+ {
+  "section": "Mix and Match",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "half-4",
+    "classes": [
+     "w-grp-half-4"
+    ],
+    "label": "half-4"
+   },
+   {
+    "width": "5",
+    "classes": [
+     "w-grp-5"
+    ],
+    "label": "5"
+   },
+   {
+    "width": "half-4",
+    "classes": [
+     "w-grp-half-4"
+    ],
+    "label": "half-4"
+   }
+  ]
+ },
+ {
+  "section": "Mix and Match",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "half-5",
+    "classes": [
+     "w-grp-half-5"
+    ],
+    "label": "half-5"
+   },
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   },
+   {
+    "width": "half-5",
+    "classes": [
+     "w-grp-half-5"
+    ],
+    "label": "half-5"
+   }
+  ]
+ },
+ {
+  "section": "Mix and Match",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "half-4",
+    "classes": [
+     "w-grp-half-4"
+    ],
+    "label": "half-4"
+   },
+   {
+    "width": "half-4",
+    "classes": [
+     "w-grp-half-4"
+    ],
+    "label": "half-4"
+   },
+   {
+    "width": "double-3",
+    "classes": [
+     "w-grp-double-3"
+    ],
+    "label": "double-3"
+   },
+   {
+    "width": "2",
+    "classes": [
+     "w-grp-2"
+    ],
+    "label": "2"
+   }
+  ]
+ },
+ {
+  "section": "Mix and Match",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "double-3",
+    "classes": [
+     "w-grp-double-3"
+    ],
+    "label": "double-3"
+   },
+   {
+    "width": "half-3",
+    "classes": [
+     "w-grp-half-3"
+    ],
+    "label": "half-3"
+   },
+   {
+    "width": "half-3",
+    "classes": [
+     "w-grp-half-3"
+    ],
+    "label": "half-3"
+   },
+   {
+    "width": "double-2",
+    "classes": [
+     "w-grp-double-2"
+    ],
+    "label": "double-2"
+   }
+  ]
+ },
+ {
+  "section": "Mix and Match",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "double-4",
+    "classes": [
+     "w-grp-double-4"
+    ],
+    "label": "double-4"
+   },
+   {
+    "width": "half-3",
+    "classes": [
+     "w-grp-half-3"
+    ],
+    "label": "half-3"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-1",
+    "classes": [
+     "w-grp-half-1"
+    ],
+    "label": "half-1"
+   }
+  ]
+ },
+ {
+  "section": "So Close...",
+  "row_classes": [
+   "row",
+   "justify-between"
+  ],
+  "cols": [
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "half-6",
+    "classes": [
+     "w-grp-half-6"
+    ],
+    "label": "half-6"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   }
+  ]
+ },
+ {
+  "section": "So Close...",
+  "row_classes": [
+   "row",
+   "justify-between"
+  ],
+  "cols": [
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   },
+   {
+    "width": "half-4",
+    "classes": [
+     "w-grp-half-4"
+    ],
+    "label": "half-4"
+   },
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   }
+  ]
+ },
+ {
+  "section": "So Close...",
+  "row_classes": [
+   "row",
+   "justify-between"
+  ],
+  "cols": [
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   },
+   {
+    "width": "1",
+    "classes": [
+     "w-grp-1"
+    ],
+    "label": "w-1"
+   },
+   {
+    "width": "1",
+    "classes": [
+     "w-grp-1"
+    ],
+    "label": "w-1"
+   },
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   }
+  ]
+ },
+ {
+  "section": "Offset or Fill Space",
+  "row_classes": [
+   "row",
+   "flex-no-wrap"
+  ],
+  "cols": [
+   {
+    "width": null,
+    "classes": [
+     "flex-grow"
+    ],
+    "label": "flex-grow"
+   },
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   }
+  ]
+ },
+ {
+  "section": "Offset or Fill Space",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "5",
+    "classes": [
+     "w-grp-5",
+     "ml-auto"
+    ],
+    "label": "6 ml-auto"
+   }
+  ]
+ },
+ {
+  "section": "Offset or Fill Space",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4",
+     "ml-auto"
+    ],
+    "label": "5 ml-auto"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3",
+     "mr-auto"
+    ],
+    "label": "4 mr-auto"
+   }
+  ]
+ },
+ {
+  "section": "Offset or Fill Space",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "5",
+    "classes": [
+     "w-grp-5",
+     "ml-auto"
+    ],
+    "label": "6 ml-auto"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3",
+     "mr-auto"
+    ],
+    "label": "4 mr-auto"
+   }
+  ]
+ },
+ {
+  "section": "Common Patterns",
+  "row_classes": [
+   "row"
+  ],
+  "cols": [
+   {
+    "width": "half-6",
+    "classes": [
+     "w-grp-half-6"
+    ],
+    "label": "half-6"
+   },
+   {
+    "width": "half-6",
+    "classes": [
+     "w-grp-half-6"
+    ],
+    "label": "half-6"
+   }
+  ]
+ },
+ {
+  "section": "Common Patterns",
+  "row_classes": [
+   "row",
+   "justify-around"
+  ],
+  "cols": [
+   {
+    "width": "double-2",
+    "classes": [
+     "w-grp-double-2"
+    ],
+    "label": "double-2"
+   },
+   {
+    "width": "double-2",
+    "classes": [
+     "w-grp-double-2"
+    ],
+    "label": "double-2"
+   }
+  ]
+ },
+ {
+  "section": "Common Patterns",
+  "row_classes": [
+   "row",
+   "justify-around"
+  ],
+  "cols": [
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   },
+   {
+    "width": "4",
+    "classes": [
+     "w-grp-4"
+    ],
+    "label": "4"
+   }
+  ]
+ },
+ {
+  "section": "Common Patterns",
+  "row_classes": [
+   "row",
+   "justify-between"
+  ],
+  "cols": [
+   {
+    "width": "half-5",
+    "classes": [
+     "w-grp-half-5"
+    ],
+    "label": "half-5"
+   },
+   {
+    "width": "half-5",
+    "classes": [
+     "w-grp-half-5"
+    ],
+    "label": "half-5"
+   },
+   {
+    "width": "half-5",
+    "classes": [
+     "w-grp-half-5"
+    ],
+    "label": "half-5"
+   }
+  ]
+ },
+ {
+  "section": "Common Patterns",
+  "row_classes": [
+   "row",
+   "justify-between"
+  ],
+  "cols": [
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   },
+   {
+    "width": "3",
+    "classes": [
+     "w-grp-3"
+    ],
+    "label": "3"
+   }
+  ]
+ },
+ {
+  "section": "Common Patterns",
+  "row_classes": [
+   "row",
+   "justify-between"
+  ],
+  "cols": [
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   },
+   {
+    "width": "half-2",
+    "classes": [
+     "w-grp-half-2"
+    ],
+    "label": "half-2"
+   }
+  ]
+ }
+]
