@@ -110,6 +110,19 @@ test('malformed JSON is a 400 parse error', async () => {
   assert.equal(body.id, null);
 });
 
+test('a body over 256 KB is 413, not a parse error; 256 KB exactly still gets through', async () => {
+  const r = await post('/mcp', JSON.stringify({ pad: 'x'.repeat(300 * 1024) }));
+  assert.equal(r.status, 413);
+  assert.equal(r.headers.get('access-control-allow-origin'), '*');
+  assert.deepEqual(await r.json(), { jsonrpc: '2.0', error: { code: -32000, message: 'Request body too large (max 256 KB).' }, id: null });
+
+  const atCap = `{"pad":"${'x'.repeat(256 * 1024 - 10)}"}`;
+  assert.equal(Buffer.byteLength(atCap), 256 * 1024);
+  const ok = await post('/mcp', atCap);
+  assert.equal(ok.status, 400, 'reaches the MCP transport, which rejects a body that is not JSON-RPC');
+  assert.equal((await ok.json()).error.message, 'Parse error: Invalid JSON-RPC message');
+});
+
 test('the default rate limit is the 120 a minute the README promises', async () => {
   const hit = () => post('/mcp', '{', { 'fly-client-ip': '203.0.113.120' }).then((r) => r.status);
   for (let i = 1; i <= 120; i++) assert.equal(await hit(), 400, `post ${i}`);
