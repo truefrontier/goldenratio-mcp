@@ -380,6 +380,17 @@ test('golden_ratio_steps: five steps each way by default', async () => {
   ]);
 });
 
+test('golden_ratio_steps: small values keep 4 significant digits in text instead of printing 0', async () => {
+  const { steps } = await json('golden_ratio_steps', { value: 0.0001, steps_up: 0, steps_down: 2, unit: 'px' });
+  assert.deepEqual(steps, [
+    { step: -2, value: 0.00003819660112500555, text: '0.0000382px' },
+    { step: -1, value: 0.00006180339887498547, text: '0.0000618px' },
+    { step: 0, value: 0.0001, text: '0.0001px' },
+  ]);
+  const { steps: one } = await json('golden_ratio_steps', { value: 1, steps_up: 1 });
+  assert.deepEqual(one.map((s) => s.text), ['0.09017', '0.1459', '0.2361', '0.382', '0.618', '1', '1.618']);
+});
+
 // --- validation ---
 
 test('arguments outside the schemas are rejected with the field that failed', async () => {
