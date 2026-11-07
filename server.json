@@ -1,0 +1,10 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "app.goldenratio/mcp",
+  "title": "goldenratio.app",
+  "description": "Golden-ratio design math: spacer calculator, spacing scale, grid widths, CSS vars, Tailwind setup.",
+  "repository": { "url": "https://github.com/truefrontier/goldenratio-mcp", "source": "github" },
+  "websiteUrl": "https://goldenratio.app",
+  "version": "0.1.1",
+  "remotes": [ { "type": "streamable-http", "url": "https://mcp.goldenratio.app/mcp" } ]
+}
