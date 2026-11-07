@@ -277,6 +277,13 @@ test('golden_grid: w-grp- and grp- prefixes are optional; rows can overflow or f
   );
 });
 
+test('golden_grid: width names are case-insensitive', async () => {
+  const out = await json('golden_grid', { row: ['Half-4', 'W-GRP-5', 'grp-HALF-4'], include_examples: false });
+  assert.deepEqual(out.row.columns.map((c) => c.class), ['w-grp-half-4', 'w-grp-5', 'w-grp-half-4']);
+  assert.equal(out.row.total_percent, 100);
+  assert.equal(out.row.fills_row_exactly, true);
+});
+
 test('golden_grid: the 38 example rows from the Grid page, with their totals', async () => {
   const ex = (await json('golden_grid', {})).site_examples;
   assert.equal(ex.length, 38);
