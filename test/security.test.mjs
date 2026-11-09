@@ -69,3 +69,24 @@ test('on Fly, the rate limit buckets by fly-client-ip and ignores x-forwarded-fo
     srv.child.kill();
   }
 });
+
+test('the rate-limit table holds at most 10,000 clients, so rotating IPv6 addresses cannot grow it', async () => {
+  const srv = await start({ RATE_LIMIT_PER_MIN: '2', FLY_APP_NAME: 'goldenratio-mcp' });
+  try {
+    const first = { 'fly-client-ip': '2001:db8::1' };
+    assert.deepEqual([await post(srv.base, first), await post(srv.base, first), await post(srv.base, first)], [400, 400, 429]);
+    // 10,000 more addresses, the way one IPv6 client can rotate through its own prefix. None is refused.
+    const statuses = [];
+    for (let i = 0; i < 10_000; i += 100) {
+      statuses.push(...(await Promise.all(Array.from({ length: 100 }, (_, j) => post(srv.base, { 'fly-client-ip': `2001:db8:1::${(i + j).toString(16)}` })))));
+    }
+    assert.ok(statuses.every((s) => s === 400));
+    // The table is full, so the oldest bucket (the first client's) was dropped and starts over.
+    assert.equal(await post(srv.base, first), 400);
+    // The newest buckets are kept: the last address is still counted.
+    const last = { 'fly-client-ip': '2001:db8:1::270f' };
+    assert.deepEqual([await post(srv.base, last), await post(srv.base, last)], [400, 429]);
+  } finally {
+    srv.child.kill();
+  }
+});

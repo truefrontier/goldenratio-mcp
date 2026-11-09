@@ -6,6 +6,8 @@ import { createServer, VERSION, REMOTE_URL, TERMS_URL, TOOLS } from './server.js
 const PORT = Number(process.env.PORT ?? 8080);
 const LIMIT = rateLimit(process.env.RATE_LIMIT_PER_MIN); // requests per IP per minute
 const hits = new Map<string, { n: number; reset: number }>();
+// At most this many buckets. One IPv6 client can rotate through millions of addresses, so past this the oldest goes.
+const MAX_CLIENTS = 10_000;
 
 // Number('abc') is NaN, and `++h.n > NaN` is always false, so a bad value used to turn the limit off.
 function rateLimit(raw: string | undefined, fallback = 120) {
@@ -24,11 +26,12 @@ function clientIp(req: IncomingMessage) {
 function limited(ip: string) {
   const now = Date.now();
   const h = hits.get(ip);
-  if (!h || h.reset < now) {
-    hits.set(ip, { n: 1, reset: now + 60_000 });
-    return false;
-  }
-  return ++h.n > LIMIT;
+  if (h && h.reset >= now) return ++h.n > LIMIT;
+  // A new bucket goes at the end, so the Map stays oldest-first and the first key is the one to drop.
+  hits.delete(ip);
+  if (hits.size >= MAX_CLIENTS) hits.delete(hits.keys().next().value!);
+  hits.set(ip, { n: 1, reset: now + 60_000 });
+  return false;
 }
 setInterval(() => {
   const now = Date.now();
