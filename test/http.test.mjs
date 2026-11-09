@@ -2,7 +2,6 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { createServer as netServer } from 'node:net';
 import { readFileSync } from 'node:fs';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
@@ -10,22 +9,13 @@ import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/
 const HTTP_JS = new URL('../dist/http.js', import.meta.url).pathname;
 const VERSION = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version;
 
-function freePort() {
-  return new Promise((resolve, reject) => {
-    const s = netServer().once('error', reject).listen(0, '127.0.0.1', () => {
-      const { port } = s.address();
-      s.close(() => resolve(port));
-    });
-  });
-}
-
-// Resolves once the server logs that it is listening.
+// PORT=0 lets http.js bind a free port itself, so no other process can take it between a probe and the bind.
+// Resolves with that port once the server logs it.
 async function start(env = {}) {
-  const port = await freePort();
-  const child = spawn(process.execPath, [HTTP_JS], { env: { ...process.env, PORT: String(port), ...env }, stdio: ['ignore', 'pipe', 'inherit'] });
-  await new Promise((resolve, reject) => {
+  const child = spawn(process.execPath, [HTTP_JS], { env: { ...process.env, PORT: '0', ...env }, stdio: ['ignore', 'pipe', 'inherit'] });
+  const port = await new Promise((resolve, reject) => {
     child.once('exit', (code) => reject(new Error(`http.js exited early with code ${code}`)));
-    child.stdout.on('data', (d) => d.toString().includes('listening') && resolve());
+    child.stdout.on('data', (d) => { const m = d.toString().match(/listening on :(\d+)\//); if (m) resolve(m[1]); });
   });
   return { base: `http://127.0.0.1:${port}`, child };
 }
