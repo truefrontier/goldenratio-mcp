@@ -2,9 +2,9 @@
 
 An MCP server for [goldenratio.app](https://goldenratio.app). Agents can use the site's golden-ratio design tools: the Golden Calculator, the golden spacing scale, the golden grid, the CSS variables and the Tailwind plugin setup.
 
-The math is the site's own code, unedited:
+The math is the site's own code:
 
-- `src/site/calc.js` is a byte-for-byte copy of the site's `src/utils/calc.js` (the Golden Calculator).
+- `src/site/calc.js` is a copy of the site's `src/utils/calc.js` (the Golden Calculator) with one change: `find()` is a loop instead of calling itself, so 40 spacers on one side (the most the tool takes) no longer overflow the stack. It takes the same steps in the same order, and its output matched the original on 12,896 inputs the original could answer.
 - `src/site/tailwindcss-golden-ratio.cjs` is a byte-for-byte copy of `index.js` from [tailwindcss-golden-ratio](https://github.com/truefrontier/tailwindcss-golden-ratio) 0.3.5, the plugin the site's `tailwind.config.js` loads for every spacing value, grid width and CSS variable. The server runs that file as-is and calls its theme functions the way Tailwind does.
 - `src/site/grid-examples.json` and `src/site/spacing-cheatsheet.json` are pulled out of the site's `Grid.vue` and `Spacing.vue` by the scripts in `scripts/`.
 
@@ -100,7 +100,7 @@ npm run extract      # regenerate the JSON data from a ../goldenratio-app checko
 
 Deploy: `fly deploy` (app `goldenratio-mcp`, see `fly.toml`).
 
-Rate limit: `RATE_LIMIT_PER_MIN` (default 120 posts per client IP per minute) falls back to 120 if it isn't a positive whole number. The client IP is Fly's `fly-client-ip` header when `FLY_APP_NAME` is set (Fly sets it), and the socket address everywhere else. `x-forwarded-for` is never read. Behind your own proxy, every client shares the proxy's bucket, so raise the limit.
+Rate limit: `RATE_LIMIT_PER_MIN` (default 120 posts per client IP per minute) falls back to 120 if it isn't a positive whole number. The client IP is Fly's `fly-client-ip` header when `FLY_APP_NAME` is set (Fly sets it), and the socket address everywhere else. `x-forwarded-for` is never read. Behind your own proxy, every client shares the proxy's bucket, so raise the limit. At most 10,000 client IPs are tracked at once, and past that the oldest is dropped, so rotating IPv6 addresses can't grow the server's memory.
 
 ## Verification
 
