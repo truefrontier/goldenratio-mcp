@@ -31,7 +31,7 @@ async function start(env = {}) {
 }
 
 let srv;
-before(async () => (srv = await start()));
+before(async () => (srv = await start({ FLY_APP_NAME: 'goldenratio-mcp' }))); // fly-client-ip is only trusted on Fly
 after(() => srv.child.kill());
 
 const post = (path, body, headers = {}) =>
@@ -131,7 +131,7 @@ test('the default rate limit is the 120 a minute the README promises', async () 
 });
 
 test('the rate limit returns 429 after RATE_LIMIT_PER_MIN posts from one client IP', async () => {
-  const limited = await start({ RATE_LIMIT_PER_MIN: '2' });
+  const limited = await start({ RATE_LIMIT_PER_MIN: '2', FLY_APP_NAME: 'goldenratio-mcp' });
   try {
     const hit = (headers) => fetch(limited.base + '/mcp', { method: 'POST', headers, body: '{' });
     assert.equal((await hit({ 'fly-client-ip': '203.0.113.1' })).status, 400);
@@ -139,11 +139,9 @@ test('the rate limit returns 429 after RATE_LIMIT_PER_MIN posts from one client 
     const r = await hit({ 'fly-client-ip': '203.0.113.1' });
     assert.equal(r.status, 429);
     assert.deepEqual(await r.json(), { jsonrpc: '2.0', error: { code: -32000, message: 'Rate limit exceeded, try again in a minute.' }, id: null });
-    // Each client IP gets its own bucket: Fly's fly-client-ip, else the first x-forwarded-for entry.
+    // Each client IP gets its own bucket: Fly's fly-client-ip. x-forwarded-for is never read.
     assert.equal((await hit({ 'fly-client-ip': '203.0.113.2' })).status, 400);
-    assert.equal((await hit({ 'x-forwarded-for': '198.51.100.7, 10.0.0.1' })).status, 400);
-    assert.equal((await hit({ 'x-forwarded-for': '198.51.100.7, 10.0.0.2' })).status, 400);
-    assert.equal((await hit({ 'x-forwarded-for': '198.51.100.7' })).status, 429);
+    assert.equal((await hit({ 'fly-client-ip': '203.0.113.1', 'x-forwarded-for': '198.51.100.7' })).status, 429);
     // GETs are not counted.
     assert.equal((await fetch(limited.base + '/healthz', { headers: { 'fly-client-ip': '203.0.113.1' } })).status, 200);
   } finally {
