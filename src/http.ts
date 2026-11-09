@@ -4,8 +4,16 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { createServer, VERSION, REMOTE_URL, TERMS_URL, TOOLS } from './server.js';
 
 const PORT = Number(process.env.PORT ?? 8080);
-const LIMIT = Number(process.env.RATE_LIMIT_PER_MIN ?? 120); // requests per IP per minute
+const LIMIT = rateLimit(process.env.RATE_LIMIT_PER_MIN); // requests per IP per minute
 const hits = new Map<string, { n: number; reset: number }>();
+
+// Number('abc') is NaN, and `++h.n > NaN` is always false, so a bad value used to turn the limit off.
+function rateLimit(raw: string | undefined, fallback = 120) {
+  const n = Number(raw ?? fallback);
+  if (Number.isInteger(n) && n > 0) return n;
+  console.error(`RATE_LIMIT_PER_MIN=${JSON.stringify(raw)} is not a positive whole number; using ${fallback}.`);
+  return fallback;
+}
 
 function clientIp(req: IncomingMessage) {
   return (req.headers['fly-client-ip'] as string) || (req.headers['x-forwarded-for'] as string)?.split(',')[0].trim() || req.socket.remoteAddress || '?';
