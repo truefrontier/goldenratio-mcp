@@ -57,6 +57,36 @@ test('off Fly, a client cannot pick its own rate-limit bucket with fly-client-ip
   }
 });
 
+test('on Fly, IPv6 clients share one rate-limit bucket per /64', async () => {
+  const srv = await start({ RATE_LIMIT_PER_MIN: '2', FLY_APP_NAME: 'goldenratio-mcp' });
+  try {
+    const from = (ip) => post(srv.base, { 'fly-client-ip': ip });
+    // One client usually gets a whole /64, so stepping through its addresses must not reset the count.
+    assert.equal(await from('2001:db8:1:2::1'), 400);
+    assert.equal(await from('2001:db8:1:2:ffff:ffff:ffff:ffff'), 400);
+    assert.equal(await from('2001:0DB8:0001:0002::3'), 429);
+    // The next /64 over is a different client.
+    assert.equal(await from('2001:db8:1:3::1'), 400);
+  } finally {
+    srv.child.kill();
+  }
+});
+
+test('IPv4 clients keep one rate-limit bucket per address, also in the ::ffff: form a dual-stack socket reports', async () => {
+  const srv = await start({ RATE_LIMIT_PER_MIN: '2', FLY_APP_NAME: 'goldenratio-mcp' });
+  try {
+    const from = (ip) => post(srv.base, { 'fly-client-ip': ip });
+    assert.equal(await from('::ffff:198.51.100.1'), 400);
+    assert.equal(await from('::ffff:198.51.100.1'), 400);
+    assert.equal(await from('::ffff:198.51.100.1'), 429);
+    // Mapped IPv4 addresses all sit in ::/64, so a plain /64 rule would put every IPv4 client in one bucket.
+    assert.equal(await from('::ffff:198.51.100.2'), 400);
+    assert.equal(await from('198.51.100.3'), 400);
+  } finally {
+    srv.child.kill();
+  }
+});
+
 test('on Fly, the rate limit buckets by fly-client-ip and ignores x-forwarded-for', async () => {
   const srv = await start({ RATE_LIMIT_PER_MIN: '2', FLY_APP_NAME: 'goldenratio-mcp' });
   try {
