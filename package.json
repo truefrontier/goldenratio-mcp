@@ -16,7 +16,7 @@
     "build": "tsc && node -e \"require('fs').cpSync('src/site','dist/site',{recursive:true,filter:(p)=>!p.endsWith('.d.ts')})\"",
     "start": "node dist/stdio.js",
     "start:http": "node dist/http.js",
-    "test": "node scripts/smoke.mjs",
+    "test": "npm run build && node --test test/*.test.mjs && node scripts/smoke.mjs",
     "extract": "node scripts/extract-grid-examples.mjs ../goldenratio-app/src/views/Grid.vue > src/site/grid-examples.json && node scripts/extract-spacing-cheatsheet.mjs ../goldenratio-app/src/views/Spacing.vue > src/site/spacing-cheatsheet.json"
   },
   "engines": {

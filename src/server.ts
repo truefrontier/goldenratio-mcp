@@ -33,11 +33,13 @@ const opts = (a: { spacer_base?: number; spacer_unit?: string; prefix?: boolean 
 
 const num = (v: string) => parseFloat(v);
 const round = (n: number, d = 4) => Math.round(n * 10 ** d) / 10 ** d;
+// 4 decimals, but below 1 keep 4 significant digits so small values don't print as 0.
+const short = (n: number) => (Math.abs(n) >= 1 ? round(n, 4) : Number(n.toPrecision(4)));
 
-// Width names accepted by golden_grid: "5", "grp-5", "w-grp-5", "half-4", "double-2"...
+// Width names accepted by golden_grid, any case: "5", "grp-5", "w-grp-5", "half-4", "Double-2"...
 const WIDTH_RE = /^(?:w-)?(?:grp-)?((?:half-|double-)?(?:[1-9]|1[01]))$/;
 function widthKey(w: string) {
-  const m = String(w).trim().match(WIDTH_RE);
+  const m = String(w).trim().toLowerCase().match(WIDTH_RE);
   if (!m) throw new Error(`Unknown grid width "${w}". Use 1-11, half-1..half-11 or double-1..double-11 (w-grp- prefix optional).`);
   return `grp-${m[1]}`;
 }
@@ -195,7 +197,7 @@ function stepsTool(a: { value: number; steps_up?: number; steps_down?: number; u
   for (let k = -down; k <= up; k++) {
     let v = a.value;
     for (let i = 0; i < Math.abs(k); i++) v = k < 0 ? v / GR : v * GR; // same repeated multiply/divide as the site
-    rows.push({ step: k, value: v, text: `${round(v, 4)}${unit}` });
+    rows.push({ step: k, value: v, text: `${short(v)}${unit}` });
   }
   return {
     golden_ratio: GR,

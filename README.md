@@ -92,7 +92,7 @@ The goldenratio.app and True Frontier names and logos aren't covered by this lic
 ```sh
 npm install
 npm run build        # tsc, then copies src/site into dist/site unchanged
-npm test             # calls every tool through a real MCP client over stdio
+npm test             # builds, runs the offline tests in test/ (no network), then calls every tool over stdio
 node scripts/smoke.mjs https://mcp.goldenratio.app/mcp   # same, against the remote
 npm run start:http   # local Streamable HTTP on :8080/mcp
 npm run extract      # regenerate the JSON data from a ../goldenratio-app checkout
