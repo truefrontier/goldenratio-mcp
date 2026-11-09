@@ -5,9 +5,9 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { createServer, VERSION, REMOTE_URL, TERMS_URL, TOOLS } from './server.js';
 
 const PORT = Number(process.env.PORT ?? 8080);
-const LIMIT = rateLimit(process.env.RATE_LIMIT_PER_MIN); // requests per IP per minute
+const LIMIT = rateLimit(process.env.RATE_LIMIT_PER_MIN); // requests a minute per IPv4 address or IPv6 /64
 const hits = new Map<string, { n: number; reset: number }>();
-// At most this many buckets. One IPv6 client can rotate through millions of addresses, so past this the oldest goes.
+// At most this many buckets. A client holding a /48 can step through 65,536 /64s, so past this the oldest goes.
 const MAX_CLIENTS = 10_000;
 
 // Number('abc') is NaN, and `++h.n > NaN` is always false, so a bad value used to turn the limit off.

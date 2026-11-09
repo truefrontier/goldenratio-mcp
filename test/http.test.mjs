@@ -117,7 +117,7 @@ test('the default rate limit is the 120 a minute the README promises', async () 
   const hit = () => post('/mcp', '{', { 'fly-client-ip': '203.0.113.120' }).then((r) => r.status);
   for (let i = 1; i <= 120; i++) assert.equal(await hit(), 400, `post ${i}`);
   assert.equal(await hit(), 429);
-  assert.match(readFileSync(new URL('../README.md', import.meta.url), 'utf8'), /no auth, 120 requests a minute per IP/);
+  assert.match(readFileSync(new URL('../README.md', import.meta.url), 'utf8'), /no auth, 120 requests a minute per IPv4 address or IPv6 \/64\)/);
 });
 
 test('the rate limit returns 429 after RATE_LIMIT_PER_MIN posts from one client IP', async () => {
