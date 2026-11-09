@@ -1,5 +1,5 @@
-// Wraps the two pieces of goldenratio.app math, both used unedited:
-//  - src/site/calc.js: the Golden Calculator (goldenratio-app/src/utils/calc.js)
+// Wraps the two pieces of goldenratio.app math:
+//  - src/site/calc.js: the Golden Calculator (goldenratio-app/src/utils/calc.js; find() is a loop, see README)
 //  - src/site/tailwindcss-golden-ratio.cjs: tailwindcss-golden-ratio@0.3.5 index.js, the plugin the
 //    site's tailwind.config.js loads for every spacing, width, height and CSS variable value.
 import { readFileSync } from 'node:fs';

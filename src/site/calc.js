@@ -47,29 +47,34 @@ export const findGoldenMatches = (arr1, arr2 = [], arrMax = 5) => {
 
   // max is the number of the highest
   // which is also the index of the next lowest
+  // goldenratio-mcp change: the site's find() called itself in tail position once per spacer it tried,
+  // so 20-odd spacer 11s overflowed the stack. This loop takes the same steps in the same order.
   const find = (target, max = 12, useFit = false) => {
-    let fit = maxFit(target, max);
-    if (fit) {
-      // store in foundArr and keep going
-      foundArr.push(fit);
-      foundTotal += grArr[fit];
-      find(arrTotal - foundTotal, useFit ? useFit(fit) : 12, useFit);
-    } else {
-      // store foundArr accordingly
-      let [nextMax] = foundArr;
-      if (foundTotal && Math.round(foundTotal) === Math.round(arrTotal)) {
-        foundArr.sort((a, b) => a - b).reverse();
-        let foundArrStr = foundArr.join(',');
-        if (!resultsCheck.includes(foundArrStr)) {
-          results.push(foundArr);
-          resultsCheck.push(foundArrStr);
+    for (;;) {
+      let fit = maxFit(target, max);
+      if (fit) {
+        // store in foundArr and keep going
+        foundArr.push(fit);
+        foundTotal += grArr[fit];
+        target = arrTotal - foundTotal;
+        max = useFit ? useFit(fit) : 12;
+      } else {
+        // store foundArr accordingly
+        let [nextMax] = foundArr;
+        if (foundTotal && Math.round(foundTotal) === Math.round(arrTotal)) {
+          foundArr.sort((a, b) => a - b).reverse();
+          let foundArrStr = foundArr.join(',');
+          if (!resultsCheck.includes(foundArrStr)) {
+            results.push(foundArr);
+            resultsCheck.push(foundArrStr);
+          }
         }
-      }
 
-      if (nextMax >= 1) {
+        if (!(nextMax >= 1)) return;
         foundArr = [];
         foundTotal = 0;
-        find(arrTotal, nextMax - 1, useFit);
+        target = arrTotal;
+        max = nextMax - 1;
       }
     }
   };

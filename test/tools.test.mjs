@@ -200,6 +200,30 @@ test('golden_calculator: no spacers on either side', async () => {
   });
 });
 
+test('golden_calculator: three spacer 11s list the same 24 matches the recursive find() gave', async () => {
+  const out = await json('golden_calculator', { left: [11, 11, 11] });
+  assert.deepEqual(out.matches, [
+    [11, 11, 11], [11, 11, 10, 9], [11, 11, 10, 8, 7], [11, 11, 10, 8, 6, 5], [11, 11, 9, 9, 7, 6], [11, 10, 10, 9, 8, 7],
+    [10, 10, 10, 10, 9, 7], [11, 11, 10, 8, 6, 4, 3], [11, 11, 9, 9, 7, 5, 4], [11, 11, 10, 7, 7, 5, 4], [11, 11, 10, 8, 6, 4, 2, 1],
+    [11, 11, 9, 9, 7, 5, 3, 2], [11, 11, 10, 7, 7, 5, 3, 2], [11, 11, 9, 9, 6, 6, 4, 3], [11, 11, 10, 8, 5, 5, 3, 2],
+    [11, 10, 9, 9, 8, 7, 7, 6], [11, 11, 10, 7, 7, 4, 4, 2, 1], [11, 10, 9, 9, 8, 7, 6, 6, 5], [9, 9, 9, 9, 9, 9, 9, 8, 6],
+    [11, 10, 9, 9, 8, 7, 6, 5, 5, 4], [11, 10, 9, 9, 8, 7, 6, 5, 4, 4, 3], [11, 10, 9, 9, 8, 7, 6, 5, 4, 3, 3, 2],
+    [11, 10, 9, 9, 8, 7, 6, 5, 4, 3, 2, 2, 1], [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 7, 3],
+  ]);
+});
+
+test('golden_calculator: the schema maximum of 40 spacers answers instead of overflowing the stack', async () => {
+  // find() used to recurse once per spacer it tried, so 22 x spacer 11 hit "Maximum call stack size exceeded".
+  const px = Object.fromEntries(SPACERS.map(([name, , p]) => [name, p]));
+  for (const left of [Array(22).fill(11), Array(40).fill(11)]) {
+    const out = await json('golden_calculator', { left });
+    assert.equal(out.shorter_side, 'right');
+    assert.deepEqual(out.matches[0], left);
+    assert.ok(out.matches.length > 1);
+    for (const m of out.matches) assert.ok(Math.abs(m.reduce((s, n) => s + px[n], 0) - out.left_height_px) < 0.1, `${m} is not ${out.left_height_px}px`);
+  }
+});
+
 // --- golden_spacing ---
 
 test('golden_spacing: the default scale, exact values, px and the site cheatsheet', async () => {
