@@ -15,8 +15,11 @@ function rateLimit(raw: string | undefined, fallback = 120) {
   return fallback;
 }
 
+// Fly Proxy sets fly-client-ip, and Fly sets FLY_APP_NAME in every Machine. Anywhere else a client can
+// send that header itself (and always picks x-forwarded-for's first entry), so use the socket address.
+const ON_FLY = !!process.env.FLY_APP_NAME;
 function clientIp(req: IncomingMessage) {
-  return (req.headers['fly-client-ip'] as string) || (req.headers['x-forwarded-for'] as string)?.split(',')[0].trim() || req.socket.remoteAddress || '?';
+  return (ON_FLY && (req.headers['fly-client-ip'] as string)) || req.socket.remoteAddress || '?';
 }
 function limited(ip: string) {
   const now = Date.now();

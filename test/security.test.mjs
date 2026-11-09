@@ -44,3 +44,28 @@ test('a bad RATE_LIMIT_PER_MIN falls back to 120 a minute instead of turning the
     }
   }
 });
+
+test('off Fly, a client cannot pick its own rate-limit bucket with fly-client-ip or x-forwarded-for', async () => {
+  const srv = await start({ RATE_LIMIT_PER_MIN: '2', FLY_APP_NAME: undefined });
+  try {
+    assert.equal(await post(srv.base, { 'fly-client-ip': '203.0.113.1' }), 400);
+    assert.equal(await post(srv.base, { 'x-forwarded-for': '198.51.100.1' }), 400);
+    assert.equal(await post(srv.base, { 'fly-client-ip': '203.0.113.2' }), 429);
+    assert.equal(await post(srv.base, { 'x-forwarded-for': '198.51.100.2, 10.0.0.1' }), 429);
+  } finally {
+    srv.child.kill();
+  }
+});
+
+test('on Fly, the rate limit buckets by fly-client-ip and ignores x-forwarded-for', async () => {
+  const srv = await start({ RATE_LIMIT_PER_MIN: '2', FLY_APP_NAME: 'goldenratio-mcp' });
+  try {
+    const a = { 'fly-client-ip': '203.0.113.1' };
+    assert.equal(await post(srv.base, a), 400);
+    assert.equal(await post(srv.base, { ...a, 'x-forwarded-for': '198.51.100.1' }), 400);
+    assert.equal(await post(srv.base, { ...a, 'x-forwarded-for': '198.51.100.2' }), 429);
+    assert.equal(await post(srv.base, { 'fly-client-ip': '203.0.113.2' }), 400);
+  } finally {
+    srv.child.kill();
+  }
+});
