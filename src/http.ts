@@ -1,5 +1,6 @@
 // Remote MCP over Streamable HTTP (stateless, read-only, no auth). POST /mcp.
 import { createServer as createHttpServer, IncomingMessage, ServerResponse } from 'node:http';
+import { isIPv6 } from 'node:net';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { createServer, VERSION, REMOTE_URL, TERMS_URL, TOOLS } from './server.js';
 
@@ -22,6 +23,24 @@ function rateLimit(raw: string | undefined, fallback = 120) {
 const ON_FLY = !!process.env.FLY_APP_NAME;
 function clientIp(req: IncomingMessage) {
   return (ON_FLY && (req.headers['fly-client-ip'] as string)) || req.socket.remoteAddress || '?';
+}
+// One IPv6 client usually gets a whole /64, so it could step through addresses to reset its count.
+// Bucket IPv6 by /64 and IPv4 by the full address. A dual-stack socket reports an IPv4 client as
+// ::ffff:a.b.c.d, which sits in ::/64 with every other IPv4 client, so that form maps back to IPv4.
+function rateKey(ip: string) {
+  const addr = ip.replace(/%.*$/, ''); // drop a zone id (fe80::1%en0)
+  if (!isIPv6(addr)) return ip; // IPv4, or '?'
+  const words = (part: string) =>
+    part.split(':').filter(Boolean).flatMap((w) => {
+      if (!w.includes('.')) return [parseInt(w, 16)];
+      const [a, b, c, d] = w.split('.').map(Number); // an IPv4 tail is the last two words
+      return [(a << 8) | b, (c << 8) | d];
+    });
+  const [head, tail = ''] = addr.split('::');
+  const h = words(head), t = words(tail);
+  const g = [...h, ...new Array<number>(8 - h.length - t.length).fill(0), ...t];
+  if (g.slice(0, 5).every((w) => w === 0) && g[5] === 0xffff) return `${g[6] >> 8}.${g[6] & 255}.${g[7] >> 8}.${g[7] & 255}`;
+  return `${g.slice(0, 4).map((w) => w.toString(16)).join(':')}::/64`;
 }
 function limited(ip: string) {
   const now = Date.now();
@@ -85,7 +104,7 @@ const server = createHttpServer(async (req, res) => {
     res.setHeader('allow', 'POST');
     return send(res, 405, { jsonrpc: '2.0', error: { code: -32000, message: 'Method not allowed. POST JSON-RPC to /mcp.' }, id: null });
   }
-  if (limited(clientIp(req))) return send(res, 429, { jsonrpc: '2.0', error: { code: -32000, message: 'Rate limit exceeded, try again in a minute.' }, id: null });
+  if (limited(rateKey(clientIp(req)))) return send(res, 429, { jsonrpc: '2.0', error: { code: -32000, message: 'Rate limit exceeded, try again in a minute.' }, id: null });
   try {
     const body = await readBody(req);
     const server = createServer();
