@@ -224,7 +224,8 @@ export function createServer() {
       title: 'Golden Calculator',
       description:
         'The goldenratio.app Golden Calculator. Stack spacers numbered 1-11 (each is the previous x 1.618) on a left and a right side; ' +
-        'returns whether both sides are equal and, if not, every combination of spacers that would make the shorter side match ("Try" on the site). ' +
+        'returns whether both sides are equal and, if not, the combinations of spacers the site lists under "Try" to make the shorter side match. ' +
+        'Like the site, that list is long but not exhaustive: other stacks can balance too. ' +
         'The site starts with left = [6, 5, 6], right = [].',
       inputSchema: {
         left: z.array(z.number().int().min(1).max(11)).max(40).optional().describe('Spacer numbers stacked on the left, top to bottom, e.g. [6, 5, 6].'),

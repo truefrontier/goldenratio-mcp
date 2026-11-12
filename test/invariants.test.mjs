@@ -223,3 +223,10 @@ test('tailwind_plugin_setup: the printed config runs as JavaScript and hands the
     assert.deepEqual(mod.exports.plugins, [plugin], at);
   }
 });
+
+test('golden_calculator keeps the site quirk: "Try" is not every combination (a lone 6 skips 5,2,2,1 and 3,3,3,2,2)', async () => {
+  const out = await json('golden_calculator', { left: [6] });
+  assert.deepEqual(out.matches, [[6], [5, 4], [5, 3, 2], [4, 4, 3], [4, 4, 2, 1], [4, 3, 3, 2], [4, 3, 2, 2, 1]]);
+  // Both skipped stacks still balance: 4 = 2 + 2 + 1 and 5 = 3 + 2, by the adjacent-spacers rule.
+  for (const stack of [[5, 2, 2, 1], [3, 3, 3, 2, 2]]) assert.equal((await json('golden_calculator', { left: [6], right: stack })).equal, true, String(stack));
+});
