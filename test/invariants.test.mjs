@@ -198,3 +198,28 @@ test('golden_css_variables: css, min and json carry the same variables, with the
     for (const x of values) assert.equal(vars[x.css_var], x.value, `${at} ${x.css_var}`);
   }
 });
+
+test('tailwind_plugin_setup: the printed config runs as JavaScript and hands the plugin exactly the options passed', async () => {
+  // A prefix is free text up to 20 characters, and the config is meant to be pasted into tailwind.config.js.
+  const HOSTILE = ['"', "'", '\\', '\n', '`${x}`', '*/', '</script>', ' ', '}]);', '__proto__'];
+  const r = rng(9);
+  for (let i = 0; i < 60; i++) {
+    const args = {};
+    if (r() < 0.7) args.prefix = r() < 0.2 ? r() < 0.5 : (HOSTILE[int(r, 0, HOSTILE.length - 1)] + 'gr-').slice(0, 20);
+    if (r() < 0.5) args.spacer_base = int(r, 1, 4000) / 8;
+    if (r() < 0.5) args.spacer_unit = UNITS[int(r, 0, UNITS.length - 1)];
+    if (r() < 0.5) args.use_css_vars = r() < 0.5;
+    const { tailwind_config } = await json('tailwind_plugin_setup', args);
+    const plugin = Symbol('tailwindcss-golden-ratio');
+    const mod = { exports: null };
+    new Function('module', 'require', tailwind_config)(mod, (id) => (id === 'tailwindcss-golden-ratio' ? plugin : assert.fail(`require(${id})`)));
+    const expected = {};
+    for (const [from, to] of [['prefix', 'prefix'], ['spacer_base', 'spacerBase'], ['spacer_unit', 'spacerUnit'], ['use_css_vars', 'useCssVars']]) {
+      if (from in args) expected[to] = args[from];
+    }
+    const at = JSON.stringify(args);
+    assert.deepEqual(mod.exports.theme.goldenRatio ?? {}, expected, at);
+    assert.deepEqual(mod.exports.theme.extend, {}, at);
+    assert.deepEqual(mod.exports.plugins, [plugin], at);
+  }
+});
