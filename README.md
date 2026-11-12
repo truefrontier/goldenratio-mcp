@@ -51,7 +51,7 @@ Add a remote (Streamable HTTP) server with the URL above. If the client only run
 
 | Tool | Site feature | What it returns |
 | --- | --- | --- |
-| `golden_calculator` | [Golden Calculator](https://goldenratio.app/#/calculator) | Stack spacers 1-11 on a left and right side. Returns whether they're equal and every combination that makes the shorter side match ("Try"), plus what the site shows under each column. The site starts at left `[6, 5, 6]`. |
+| `golden_calculator` | [Golden Calculator](https://goldenratio.app/#/calculator) | Stack spacers 1-11 on a left and right side. Returns whether they're equal and the combinations the site lists to make the shorter side match ("Try"), plus what the site shows under each column. The site starts at left `[6, 5, 6]`. |
 | `golden_spacing` | [Spacing cheatsheet](https://goldenratio.app/#/spacing) | Spacers 1-11, half-1..11 and double-1..11 with exact values, px, CSS variable names and Tailwind keys, for any `spacer_base` / `spacer_unit` / `prefix`. With the defaults it also returns the site's rounded cheatsheet table. |
 | `golden_grid` | [Golden Grid](https://goldenratio.app/#/grid) | `w-grp-*`, `w-grp-half-*`, `w-grp-double-*` widths (optionally in px for a container), the starter `.container` / `.row` CSS, all 38 example rows from the page with their totals, and a check of your own row. |
 | `golden_css_variables` | Site stylesheet | The `:root` block of `--golden-ratio-*` variables exactly as the site ships it (css, minified or json). |
@@ -72,6 +72,7 @@ All tools are annotated `readOnlyHint: true`.
 - The Spacing page's table is rounded by hand (for example spacer 5 shows `14.828px`, the exact value is 14.8328px). `golden_spacing` returns both: `values` are the exact numbers the site's CSS uses, and `site_cheatsheet` is the table as printed.
 - Column heights in `golden_calculator` are exact math rounded to 0.1px. The site measures rendered heights, which Chrome rounds to 1/64px, so the two can differ by 0.1px. The matches and the equal/not-equal result are identical.
 - The plugin targets Tailwind CSS 1.x, like the site (`tailwindcss ^1.4`).
+- `golden_calculator` lists the same "Try" combinations as the site, and that isn't all of them. The site's search takes the biggest spacer that fits first and restarts a few times, so it skips some stacks that balance. For a lone spacer 6, it lists 7 of the 9 stacks of up to 5 spacers that match. It misses 5 + 2 + 2 + 1 and 3 + 3 + 3 + 2 + 2.
 
 ## Hosted service
 
@@ -97,6 +98,8 @@ node scripts/smoke.mjs https://mcp.goldenratio.app/mcp   # same, against the rem
 npm run start:http   # local Streamable HTTP on :8080/mcp
 npm run extract      # regenerate the JSON data from a ../goldenratio-app checkout
 ```
+
+[docs/maintaining.md](docs/maintaining.md) says what each test checks, and how to check that the code copied from goldenratio.app is still in step with the site.
 
 Deploy: `fly deploy` (app `goldenratio-mcp`, see `fly.toml`).
 
