@@ -98,6 +98,8 @@ npm run start:http   # local Streamable HTTP on :8080/mcp
 npm run extract      # regenerate the JSON data from a ../goldenratio-app checkout
 ```
 
+[docs/maintaining.md](docs/maintaining.md) says what each test checks, and how to check that the code copied from goldenratio.app is still in step with the site.
+
 Deploy: `fly deploy` (app `goldenratio-mcp`, see `fly.toml`).
 
 Rate limit: `RATE_LIMIT_PER_MIN` (default 120 posts per client IP per minute) falls back to 120 if it isn't a positive whole number. The client IP is Fly's `fly-client-ip` header when `FLY_APP_NAME` is set (Fly sets it), and the socket address everywhere else. `x-forwarded-for` is never read. Behind your own proxy, every client shares the proxy's bucket, so raise the limit. At most 10,000 client IPs are tracked at once, and past that the oldest is dropped, so rotating IPv6 addresses can't grow the server's memory.
